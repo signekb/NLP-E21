@@ -1,3 +1,10 @@
+#### QUESTIONS ####
+'''
+- Best way to use the md file? bc this is not it...
+- Why does "def corpus_loader(folder: str) -> List[str]:" not work for me? - it says "List not defined"
+- How to push my changes in ucloud to git? 
+- Should I clone repository every time I start ucloud session?
+'''
 #pip install spacy
 
 # install smaller model
