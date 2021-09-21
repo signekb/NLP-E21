@@ -137,5 +137,6 @@ The task can meaningfully be deconstructed into a series of functions:
 </details>
 
 <br /> 
-'''
+
 - 4) If you get the time calculate PMI (see last weeks class) using the tokenization and sentence segmentation of spaCy.
+'''
