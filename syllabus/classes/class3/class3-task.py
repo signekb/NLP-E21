@@ -1,50 +1,15 @@
 #### QUESTIONS ####
-'''
-- Best way to use the md file? bc this is not it...
-- Why does "def corpus_loader(folder: str) -> List[str]:" not work for me? - it says "List not defined"
-- How to push my changes in ucloud to git? 
-- Should I clone repository every time I start ucloud session?
-'''
+#- Best way to use the md file? bc this is not it...
+#- Why does "def corpus_loader(folder: str) -> List[str]:" not work for me? - it says "List not defined"
 #pip install spacy
-
 # install smaller model
 #python -m spacy download en_core_web_sm
-
-# install larger model
-#python -m spacy download en_core_web_lg
-
 #cd NLP-E21/syllabus/classes/class3/
-'''
-import spacy
-nlp = spacy.load("en_core_web_sm")
-doc = nlp("This is an English text")
 
-# We can expect this quite easily using, where we see that the output 
-# if the pipeline is a document class called `Doc`:
-print(type(doc))
-
-# And that if you index the `Doc` you get a `Token` object.
-token = doc[1]
-print(token)
-# is
-print(type(token))
-
-#What does this token contain? Well we can (like any other object in python) inspect it using the `dir`:
-print(dir(token))
-#Which gives is a very long list of which should look something like this: 
-# `['_', '__bytes__', (...), 'is_digit', 'is_punct', 'whitespace_']` of all the attributes of 
-# the function. We could also just have looked at the [documentation](https://spacy.io/api/token), 
-#but that wouldn't teach you how to inspect a class. 
-# For example we can now check whether a token is a digit:
-
-print(token.is_digit)
-# False
-
-#You might also find a couple of other interesting things in there especially the 
+#doc:
 # `lemma_` which denotes the lemma of the token, 
 # `pos_` which denotes part-of-speech tag of the token and 
 # `ent_type_` which denote the entity type of the token.
-'''
 
 #**Exercise 1**:
 #Inspect the `doc`-object using `dir` and `type` along with the [documentation](https://spacy.io/api/Doc). 
@@ -61,14 +26,18 @@ us to do cool analyses on texts without us having to do that ourselves
 # Construction 1 - using nlp
 doc = nlp("Some text")
 print(doc)
+-- the nlp pipeline takes in text and create component like; tokenizer, parser, NER, POS-tagger, etc. 
+- tokenizer: split sentence into tokens
+- parser: creates dependency tree --> you can recreate the sentences using this parser
+- ner: named entity recognition - tag names as names
+- POS-tagger: verb, noun, etc. 
+- and possibly many more... (you can keep adding components to the doc class)
 
 # Construction 2 - create words and spaces and collect in a doc object 
 from spacy.tokens import Doc
-
 words = ["hello", "world", "!"]
 spaces = [True, False, False]
-doc = Doc(nlp.vocab, words=words, spaces=spaces)
-#We will talk about this exercise as the first thing in the class.
+doc = Doc(nlp.vocab, words=words, spaces=spaces) - classes are typically upper case
 '''
 
 ### Corpus loader
@@ -117,15 +86,13 @@ def noun_adj_verb_filter(doc):
 all_lemmas = [noun_adj_verb_filter(doc) for doc in docs]
 
 # 3) Calculate the ratio of pos-tags in texts. 
-# The ratios of pos-tags on other linguistic feature have for example been 
-# [linked](https://www.nature.com/articles/s41537-021-00154-3) 
-# to scizophrenia which e.g. use less adverbs, adjectives, and determiners (e.g., “the,” “a,”).
+'''
 from collections import Counter
 pos_counts = Counter([token_pos_ for token in doc]) # return dictionary with how many 
 list(zip([j for j in pos_counts.keys()],[i/len(doc) for i in pos_counts.values()]))
 
 [(pos,count/len(doc)) for pos,count in pos_counts.items()]
-
+'''
 # 4 Calculate mean dependency distance (MDD)
 '''
 token: "reporter"
