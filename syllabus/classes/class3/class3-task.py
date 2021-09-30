@@ -103,4 +103,7 @@ for i,token in enumerate(doc):
     #gives us index and token for all indices in the doc
 
 then subtract the two: abs(tokeni-token.head)
+
+pos_counts = Counter([token.pos_ for token in doc])
+[(pos, count/len(doc)) for pos, count in pos_counts.items()]
 '''
