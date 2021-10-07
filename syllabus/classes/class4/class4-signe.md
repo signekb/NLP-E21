@@ -12,6 +12,7 @@ Summary, before the class you are required to:
 
 ### (py)Torch
 
+
 Pytorch can be installed easily using:
 ```
 pip install torch
