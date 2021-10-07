@@ -1,7 +1,6 @@
 """
 Logistic regression implemented using the nn.module class
 """
-
 import torch
 import torch.nn as nn
 from sklearn import datasets
