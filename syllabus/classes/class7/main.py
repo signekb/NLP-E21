@@ -2,7 +2,6 @@ from typing import List
 from datasets import load_dataset
 import gensim.downloader as api
 
-
 # DATASET
 dataset = load_dataset("conllpp")
 train = dataset["train"]
