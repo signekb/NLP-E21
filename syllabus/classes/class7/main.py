@@ -1,4 +1,6 @@
-from typing import List
+import numpy as np
+import torch
+
 from datasets import load_dataset
 import gensim.downloader as api
 
@@ -12,13 +14,7 @@ train = dataset["train"] # subset train part of dataset
 num_classes = train.features["ner_tags"].feature.num_classes
 
 # CONVERTING EMBEDDINGS
-import numpy as np
-
-import torch
-
 model = api.load("glove-wiki-gigaword-50")
-
-from embedding import gensim_to_torch_embedding
 
 # convert gensim word embedding to torch word embedding
 embedding_layer, vocab = gensim_to_torch_embedding(model)
@@ -75,8 +71,6 @@ for i in range(batch_size):
 batch_input, batch_labels = torch.LongTensor(batch_input), torch.LongTensor(batch_labels)
 
 # CREATE MODEL
-from LSTM import RNN
-
 model = RNN(
     embedding_layer=embedding_layer, output_dim=num_classes + 1, hidden_dim_size=256
 )
